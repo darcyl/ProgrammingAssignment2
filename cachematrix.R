@@ -36,6 +36,31 @@
 ##          [,1] [,2]
 ##          [1,]   -2  1.5
 ##          [2,]    1 -0.5
+
+
+#pass the list v to the cachemean() function a second time
+#  the mean of the numeric vector 20:40 should be returned
+#  also a message "retrieving value from cache" indicating that the mean
+#  is not being calculated this time but is being retrieved from the cached
+#  value
+## cachemean(v)
+
+#use v's set function to create a new vector 
+#  containing the numbers 23,23,34.6,654.35
+## v$set(c(23,23,34.6,654.35))
+
+#pass the list v to the cachemean() function
+#   the mean of the numeric vector 23,23,34.6,654.35 should be returned
+## cachemean(v)
+
+#pass the list v to the cachemean() function a second time
+#  the mean of the numeric vector 23,23,34.6,654.35 should be returned
+#  also a message "retrieving value from cache" indicating that the mean
+#  is not being calculated this time but is being retrieved from the cached
+#  value
+## cachemean(v)
+#
+
 ##
 ## Function makeCacheMatrix() creates a list comprised of 4 atomic level functions 
 ## that can be used to manage caching inverse of a matrix and reuse of a previously 
@@ -106,11 +131,25 @@ makeCacheMatrix <- function(Matrix = matrix()) {
 ##          matrix from/to global variables.  
 ##
 cacheSolve <- function(x, ...) {
+        ##
+        ## Grab what is currently saved as the inverse matrix, if anything.
+        ##        
         Inverse<-x$getInverse()
+        ##
+        ## If not null, then the the inverse has been computed previously and
+        ## corresponds to the matrix content currently stored in the global variable.
+        ## Return the inverse matrix and exit the function.
+        ##
         if(!is.null(Inverse)) {
                 message("getting cached data")
                 return(Inverse)
         }
+        ##
+        ## The inverse stored in the global variable was indeed null so will
+        ## compute the inverse (solve())) of the matrix here and also save (x$setInverse()) 
+        ## it to the inverse matrix global variable to be readily available if needed again.
+        ## corresponds to the matrix content currently stored in the global variable.
+        ##        
         Inverse <- solve(x$getMatrix())
         x$setInverse(Inverse)
         Inverse
