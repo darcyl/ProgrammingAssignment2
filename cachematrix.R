@@ -36,31 +36,6 @@
 ##          [,1] [,2]
 ##          [1,]   -2  1.5
 ##          [2,]    1 -0.5
-
-
-#pass the list v to the cachemean() function a second time
-#  the mean of the numeric vector 20:40 should be returned
-#  also a message "retrieving value from cache" indicating that the mean
-#  is not being calculated this time but is being retrieved from the cached
-#  value
-## cachemean(v)
-
-#use v's set function to create a new vector 
-#  containing the numbers 23,23,34.6,654.35
-## v$set(c(23,23,34.6,654.35))
-
-#pass the list v to the cachemean() function
-#   the mean of the numeric vector 23,23,34.6,654.35 should be returned
-## cachemean(v)
-
-#pass the list v to the cachemean() function a second time
-#  the mean of the numeric vector 23,23,34.6,654.35 should be returned
-#  also a message "retrieving value from cache" indicating that the mean
-#  is not being calculated this time but is being retrieved from the cached
-#  value
-## cachemean(v)
-#
-
 ##
 ## Function makeCacheMatrix() creates a list comprised of 4 atomic level functions 
 ## that can be used to manage caching inverse of a matrix and reuse of a previously 
